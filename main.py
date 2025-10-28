@@ -22,8 +22,8 @@ def welcomeScreen():
 
     playerx = int(SCREENWIDTH/5)
     playery = int((SCREENHEIGHT - GAME_SPRITES['player'].get_height())/2)
-    messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
-    messagey = int(SCREENHEIGHT*0.13)
+    # messagex = int((SCREENWIDTH - GAME_SPRITES['message'].get_width())/2)
+    # messagey = int(SCREENHEIGHT*0.13)
     basex = 0
     while True:
         for event in pygame.event.get():
@@ -38,7 +38,7 @@ def welcomeScreen():
             else:
                 SCREEN.blit(GAME_SPRITES['background'], (0, 0))
                 SCREEN.blit(GAME_SPRITES['player'], (playerx, playery))
-                SCREEN.blit(GAME_SPRITES['message'], (messagex, messagey))
+                # SCREEN.blit(GAME_SPRITES['message'], (messagex, messagey))
                 SCREEN.blit(GAME_SPRITES['base'], (basex, GROUNDY))
                 pygame.display.update()
                 FPSCLOCK.tick(FPS)
@@ -151,7 +151,7 @@ def isCollide(playerx, playery, upperPipes, lowerPipes):
     
     for pipe in upperPipes:
         pipeHeight = GAME_SPRITES['pipe'][0].get_height()
-        if(playery < pipeHeight + pipe['y'] and abs(playerx - pipe['x']) < GAME_SPRITES['pipe'][0].get_width()):
+        if(playery < pipeHeight + pipe['y'] and abs(playerx - pipe['x']) < GAME_SPRITES['pipe'][0].get_width()-10):
             GAME_SOUNDS['hit'].play()
             return True
 
@@ -178,10 +178,6 @@ def getRandomPipe():
     return pipe
 
 
-
-
-
-
 if __name__ == "__main__":
     # This will be the main point from where my program will start
     pygame.init() # Initialise all pygame modules
@@ -200,7 +196,7 @@ if __name__ == "__main__":
         pygame.image.load('gallery/sprites/9.png').convert_alpha(), 
     )
 
-    GAME_SPRITES['message'] = pygame.image.load('gallery/sprites/message.png').convert_alpha()
+    # GAME_SPRITES['message'] = pygame.image.load('gallery/sprites/message.png').convert_alpha()
     GAME_SPRITES['base'] = pygame.image.load('gallery/sprites/base.png').convert_alpha()
     GAME_SPRITES['pipe'] = (pygame.transform.rotate(pygame.image.load(PIPE).convert_alpha(), 180), 
     pygame.image.load(PIPE).convert_alpha())
